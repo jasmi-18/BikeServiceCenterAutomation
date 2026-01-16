@@ -1,0 +1,48 @@
+package com.ey.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ey.entity.Bike;
+import com.ey.mapper.BikeMapper;
+import com.ey.repository.BikeRepository;
+import com.ey.request.AddBikeRequest;
+import com.ey.response.BikeResponse;
+
+@Service
+public class BikeService {
+   @Autowired
+   private BikeRepository bikeRepository;
+   public void addBike(AddBikeRequest request) {
+       Bike bike = BikeMapper.toEntity(request);
+       bikeRepository.save(bike);
+   }
+   public List<BikeResponse> getMyBikes() {
+       return bikeRepository.findAll()
+               .stream()
+               .map(BikeMapper::toResponse)
+               .collect(Collectors.toList());
+   }
+   public BikeResponse getBikeById(Long bikeId) {
+       Bike bike = bikeRepository.findById(bikeId)
+               .orElseThrow(() -> new RuntimeException("Bike not found"));
+       return BikeMapper.toResponse(bike);
+   }
+   public void updateBike(Long bikeId, AddBikeRequest request) {
+       Bike bike = bikeRepository.findById(bikeId)
+               .orElseThrow(() -> new RuntimeException("Bike not found"));
+       bike.setBikeName(request.getBikeName());
+       bike.setModel(request.getModel());
+       bike.setNumberPlate(request.getNumberPlate());
+       bikeRepository.save(bike);
+   }
+   public void deleteBike(Long bikeId) {
+       bikeRepository.deleteById(bikeId);
+   }
+   public long countBikes() {
+       return bikeRepository.count();
+   }
+}

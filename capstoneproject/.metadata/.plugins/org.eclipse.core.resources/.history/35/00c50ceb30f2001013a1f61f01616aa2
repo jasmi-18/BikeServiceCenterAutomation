@@ -1,0 +1,13 @@
+package com.ey.mapper;
+
+import com.ey.entity.Notification;
+import com.ey.request.NotificationRequest;
+
+public class NotificationMapper {
+	   public static Notification toEntity(NotificationRequest request) {
+	       Notification notification = new Notification();
+	       notification.setUserId(request.getUserId());
+	       notification.setMessage(request.getMessage());
+	       return notification;
+	   }
+	}

@@ -1,0 +1,22 @@
+package com.ey.mapper;
+
+import com.ey.dto.request.CreateEstimationRequest;
+import com.ey.dto.response.EstimationResponse;
+import com.ey.entity.Estimation;
+
+public class EstimationMapper {
+	   public static Estimation toEntity(CreateEstimationRequest request) {
+	       Estimation estimation = new Estimation();
+	       estimation.setServiceRequestId(request.getServiceRequestId());
+	       estimation.setAmount(request.getAmount());
+	       estimation.setRemarks(request.getRemarks());
+	       estimation.setStatus("PENDING");
+	       return estimation;
+	   }
+	   public static EstimationResponse toResponse(Estimation estimation) {
+	       return new EstimationResponse(
+	               estimation.getAmount(),
+	               estimation.getStatus()
+	       );
+	   }
+	}

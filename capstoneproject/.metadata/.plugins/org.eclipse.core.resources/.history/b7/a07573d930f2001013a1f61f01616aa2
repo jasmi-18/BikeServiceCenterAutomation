@@ -1,0 +1,51 @@
+package com.ey.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ey.entity.ServiceRequest;
+import com.ey.mapper.ServiceRequestMapper;
+import com.ey.repository.ServiceRequestRepository;
+import com.ey.request.BookServiceRequest;
+import com.ey.request.OtpVerifyRequest;
+import com.ey.response.ServiceResponse;
+
+@Service
+public class ServiceRequestService {
+   @Autowired
+   private ServiceRequestRepository repository;
+   public ServiceResponse bookService(BookServiceRequest request) {
+       ServiceRequest sr = ServiceRequestMapper.toEntity(request);
+       repository.save(sr);
+       return ServiceRequestMapper.toResponse(sr);
+   }
+   public List<ServiceResponse> myServices() {
+       return repository.findAll()
+               .stream()
+               .map(ServiceRequestMapper::toResponse)
+               .collect(Collectors.toList());
+   }
+   public ServiceResponse getById(Long id) {
+       ServiceRequest sr = repository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Service not found"));
+       return ServiceRequestMapper.toResponse(sr);
+   }
+   public void cancelService(Long id) {
+       ServiceRequest sr = repository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Service not found"));
+       sr.setStatus("CANCELLED");
+       repository.save(sr);
+   }
+   public void verifyOtp(OtpVerifyRequest request) {
+       ServiceRequest sr = repository.findById(request.getServiceRequestId())
+               .orElseThrow(() -> new RuntimeException("Service not found"));
+       if (!sr.getOtp().equals(request.getOtp())) {
+           throw new RuntimeException("Invalid OTP");
+       }
+       sr.setStatus("PICKED_FROM_LOCATION");
+       repository.save(sr);
+   }
+}

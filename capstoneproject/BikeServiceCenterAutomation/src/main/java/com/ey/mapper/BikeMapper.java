@@ -1,0 +1,22 @@
+package com.ey.mapper;
+
+import com.ey.dto.request.AddBikeRequest;
+import com.ey.dto.response.BikeResponse;
+import com.ey.entity.Bike;
+
+public class BikeMapper {
+	   public static Bike toEntity(AddBikeRequest request) {
+	       Bike bike = new Bike();
+	       bike.setBikeName(request.getBikeName());
+	       bike.setModel(request.getModel());
+	       bike.setNumberPlate(request.getNumberPlate());
+	       return bike;
+	   }
+	   public static BikeResponse toResponse(Bike bike) {
+	       return new BikeResponse(
+	               bike.getBikeId(),
+	               bike.getBikeName(),
+	               bike.getModel()
+	       );
+	   }
+	}

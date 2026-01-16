@@ -1,0 +1,26 @@
+package com.ey.response;
+
+public class PaymentResponse {
+	
+	 private String paymentStatus;
+
+	 public PaymentResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	 }
+
+	 public PaymentResponse(String paymentStatus) {
+		super();
+		this.paymentStatus = paymentStatus;
+	 }
+
+	 public String getPaymentStatus() {
+		 return paymentStatus;
+	 }
+
+	 public void setPaymentStatus(String paymentStatus) {
+		 this.paymentStatus = paymentStatus;
+	 }
+	 
+
+}

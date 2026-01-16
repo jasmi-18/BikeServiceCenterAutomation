@@ -1,0 +1,34 @@
+package com.ey.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ey.dto.request.DeliveryRequest;
+import com.ey.dto.response.DeliveryResponse;
+import com.ey.entity.Delivery;
+import com.ey.mapper.DeliveryMapper;
+import com.ey.repository.DeliveryRepository;
+
+@Service
+public class DeliveryService {
+   @Autowired
+   private DeliveryRepository repository;
+   public void homeDelivery(DeliveryRequest request) {
+       Delivery delivery = DeliveryMapper.toHomeDeliveryEntity(request);
+       repository.save(delivery);
+   }
+   public DeliveryResponse getDetails(Long serviceRequestId) {
+       Delivery d = repository.findByServiceRequestId(serviceRequestId);
+       return new DeliveryResponse(d.getDeliveryType(), d.getStatus());
+   }
+   public void updateStatus(Long serviceRequestId, String status) {
+       Delivery d = repository.findByServiceRequestId(serviceRequestId);
+       d.setStatus(status);
+       repository.save(d);
+   }
+   public List<Delivery> pending() {
+       return repository.findByStatus("OUT_FOR_DELIVERY");
+   }
+}

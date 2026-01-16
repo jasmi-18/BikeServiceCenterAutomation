@@ -1,0 +1,32 @@
+package com.ey.response;
+
+public class ServiceResponse {
+	
+	 private Long serviceRequestId;
+	   private String status;
+	   public ServiceResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	   }
+	   public ServiceResponse(Long serviceRequestId, String status) {
+		super();
+		this.serviceRequestId = serviceRequestId;
+		this.status = status;
+	   }
+	   public Long getServiceRequestId() {
+		   return serviceRequestId;
+	   }
+	   public void setServiceRequestId(Long serviceRequestId) {
+		   this.serviceRequestId = serviceRequestId;
+	   }
+	   public String getStatus() {
+		   return status;
+	   }
+	   public void setStatus(String status) {
+		   this.status = status;
+	   }
+	   
+	   
+	   
+
+}

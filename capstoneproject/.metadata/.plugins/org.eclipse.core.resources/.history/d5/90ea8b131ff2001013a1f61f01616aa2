@@ -1,0 +1,39 @@
+package com.ey.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Reminder {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long reminderId;
+   private Long serviceRequestId;
+   private String notificationType;
+   public Reminder() {
+	super();
+	// TODO Auto-generated constructor stub
+   }
+   public Long getReminderId() {
+	return reminderId;
+   }
+   public void setReminderId(Long reminderId) {
+	this.reminderId = reminderId;
+   }
+   public Long getServiceRequestId() {
+	return serviceRequestId;
+   }
+   public void setServiceRequestId(Long serviceRequestId) {
+	this.serviceRequestId = serviceRequestId;
+   }
+   public String getNotificationType() {
+	return notificationType;
+   }
+   public void setNotificationType(String notificationType) {
+	this.notificationType = notificationType;
+   }
+   
+   
+

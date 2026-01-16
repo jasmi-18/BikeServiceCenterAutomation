@@ -1,0 +1,26 @@
+package com.ey.dto.request;
+
+public class ReminderRequest {
+	 private Long serviceRequestId;
+	   private String notificationType;
+	   public ReminderRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	   }
+	   public Long getServiceRequestId() {
+		   return serviceRequestId;
+	   }
+	   public void setServiceRequestId(Long serviceRequestId) {
+		   this.serviceRequestId = serviceRequestId;
+	   }
+	   public String getNotificationType() {
+		   return notificationType;
+	   }
+	   public void setNotificationType(String notificationType) {
+		   this.notificationType = notificationType;
+	   }
+	   
+	   
+	   
+
+}

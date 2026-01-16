@@ -1,0 +1,5 @@
+package com.ey.response;
+
+public class CommonResponse {
+
+}

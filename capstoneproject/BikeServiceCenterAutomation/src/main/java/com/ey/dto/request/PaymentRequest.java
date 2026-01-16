@@ -1,0 +1,25 @@
+package com.ey.dto.request;
+
+public class PaymentRequest {
+	private Long serviceRequestId;
+	   private Double amount;
+	   public PaymentRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	   }
+	   public Long getServiceRequestId() {
+		   return serviceRequestId;
+	   }
+	   public void setServiceRequestId(Long serviceRequestId) {
+		   this.serviceRequestId = serviceRequestId;
+	   }
+	   public Double getAmount() {
+		   return amount;
+	   }
+	   public void setAmount(Double amount) {
+		   this.amount = amount;
+	   }
+	   
+	   
+
+}

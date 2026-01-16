@@ -1,0 +1,37 @@
+package com.ey.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ey.dto.response.EstimationResponse;
+import com.ey.entity.Estimation;
+import com.ey.mapper.EstimationMapper;
+import com.ey.repository.EstimationRepository;
+import com.ey.request.CreateEstimationRequest;
+
+@Service
+public class EstimationService {
+   @Autowired
+   private EstimationRepository repository;
+   public void create(CreateEstimationRequest request) {
+       Estimation estimation = EstimationMapper.toEntity(request);
+       repository.save(estimation);
+   }
+   public EstimationResponse view(Long serviceRequestId) {
+       Estimation e = repository.findByServiceRequestId(serviceRequestId);
+       if (e == null) {
+           throw new RuntimeException("Estimation not found");
+       }
+       return EstimationMapper.toResponse(e);
+   }
+   public void approve(Long serviceRequestId) {
+       Estimation e = repository.findByServiceRequestId(serviceRequestId);
+       e.setStatus("APPROVED");
+       repository.save(e);
+   }
+   public void reject(Long serviceRequestId) {
+       Estimation e = repository.findByServiceRequestId(serviceRequestId);
+       e.setStatus("REJECTED");
+       repository.save(e);
+   }
+}

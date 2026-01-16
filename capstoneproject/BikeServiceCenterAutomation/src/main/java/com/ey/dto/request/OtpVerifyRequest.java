@@ -1,0 +1,23 @@
+package com.ey.dto.request;
+
+public class OtpVerifyRequest {
+	   private Long serviceRequestId;
+	   private Integer otp;
+	   public OtpVerifyRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	   }
+	   public Long getServiceRequestId() {
+		   return serviceRequestId;
+	   }
+	   public void setServiceRequestId(Long serviceRequestId) {
+		   this.serviceRequestId = serviceRequestId;
+	   }
+	   public Integer getOtp() {
+		   return otp;
+	   }
+	   public void setOtp(Integer otp) {
+		   this.otp = otp;
+	   }
+	   
+}

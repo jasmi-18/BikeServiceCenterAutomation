@@ -1,0 +1,54 @@
+package com.ey.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class ServiceRequest {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long serviceRequestId;
+   private Long bikeId;
+   private String pickupAddress;
+   private String status;
+   private Integer otp;
+   public ServiceRequest() {
+	super();
+	// TODO Auto-generated constructor stub
+   }
+   public Long getServiceRequestId() {
+	return serviceRequestId;
+   }
+   public Long getBikeId() {
+	return bikeId;
+   }
+   public String getPickupAddress() {
+	return pickupAddress;
+   }
+   public String getStatus() {
+	return status;
+   }
+   public Integer getOtp() {
+	return otp;
+   }
+   public void setServiceRequestId(Long serviceRequestId) {
+	this.serviceRequestId = serviceRequestId;
+   }
+   public void setBikeId(Long bikeId) {
+	this.bikeId = bikeId;
+   }
+   public void setPickupAddress(String pickupAddress) {
+	this.pickupAddress = pickupAddress;
+   }
+   public void setStatus(String status) {
+	this.status = status;
+   }
+   public void setOtp(Integer otp) {
+	this.otp = otp;
+   }
+   
+}
+   
+   
